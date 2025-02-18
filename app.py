@@ -5,11 +5,72 @@ from sklearn.metrics.pairwise import cosine_similarity
 import mysql.connector
 import pandas as pd
 import numpy as np
+import os
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+from flask import Flask, request, jsonify
+from werkzeug.utils import secure_filename
 
+from PIL import Image
+import numpy as np
+import tensorflow as tf
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'uploads'
+app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg'} 
+
+if not os.path.exists(app.config['UPLOAD_FOLDER']):
+    os.makedirs(app.config['UPLOAD_FOLDER'])
+
+flower = [
+    "astilbe",
+    "bellflower",
+    "black_eyed_susan",
+    "calendula",
+    "california_poppy",
+    "carnation",
+    "common_daisy",
+    "coreopsis",
+    "daffodil",
+    "dandelion",
+    "iris",
+    "magnolia",
+    "rose",
+    "sunflower",
+    "tulip",
+    "water_lily"
+]
+
+model = tf.keras.models.load_model('flower_mobilenetv2_model2.h5')
+
+def predict_flower(image_path, confidence_threshold=0.5):
+    # Ouvrir l'image
+    image = Image.open(image_path)
+    
+    # Redimensionner l'image à la taille attendue par le modèle (224x224)
+    image = image.resize((224, 224))
+    
+    # Convertir l'image en tableau numpy et normaliser les valeurs
+    image_array = np.array(image) / 255.0
+    
+    # Ajouter une dimension supplémentaire pour correspondre à l'entrée du modèle
+    image_array = np.expand_dims(image_array, axis=0)
+    
+    # Faire la prédiction
+    predictions = model.predict(image_array)
+    
+    # Obtenir la classe prédite et son score de confiance
+    predicted_class = np.argmax(predictions, axis=1)
+    confidence = np.max(predictions)  # Score de confiance de la prédiction
+    
+    # Vérifier si le score de confiance est supérieur au seuil
+    if confidence < confidence_threshold:
+        return "Image inconnue", confidence
+    else:
+        # Récupérer le nom de la fleur correspondante
+        predicted_flower = flower[predicted_class[0]]
+        return predicted_flower, confidence
+
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -70,6 +131,34 @@ def top_flowers():
     rating_base_recommendation = top_rated_items.head(16)
     return rating_base_recommendation
 
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'image' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+    
+    file = request.files['image']
+    
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+
+        # Faire la prédiction
+        result, confidence = predict_flower(filepath)
+        print(result, confidence)
+        
+        # Supprimer le fichier après traitement (optionnel)
+        os.remove(filepath)
+        
+        return jsonify({'result': result, 'confidence': float(confidence)}), 200
+    else:
+        return jsonify({'error': 'File type not allowed'}), 400
 
 @app.route('/')
 def index():
