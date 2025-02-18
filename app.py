@@ -104,8 +104,9 @@ columns_to_extract_tags_from = ['descriptions', 'descriptions_details', 'famille
 for column in columns_to_extract_tags_from:
     df[column] = df[column].apply(clean_and_extract_tags)
 
+df['Tags'] = df[columns_to_extract_tags_from].apply(lambda row: ', '.join(row), axis=1)
 
-def flower_recommendations(df, flowers_id, top_n=10):
+def flower_recommendations(df, flowers_id, top_n=16):
     # Convertir les stop words en liste
     stop_words_list = list(STOP_WORDS)
     tfidf_vectorizer = TfidfVectorizer(stop_words=stop_words_list)
@@ -134,6 +135,20 @@ def top_flowers():
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
+def get_flower_details(flower_name):
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="Ad.1234@",
+        database="Fleure"
+    )
+    mycursor = mydb.cursor(dictionary=True)
+    query = "SELECT * FROM plant WHERE nom LIKE %s"
+    mycursor.execute(query, (f"%{flower_name}%",))
+    result = mycursor.fetchall()
+    mycursor.close()
+    mydb.close()
+    return result
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'image' not in request.files:
@@ -153,18 +168,39 @@ def upload_file():
         result, confidence = predict_flower(filepath)
         print(result, confidence)
         
+        # Obtenir les détails de la fleur prédite
+        flower_details = get_flower_details(result)
+        
         # Supprimer le fichier après traitement (optionnel)
         os.remove(filepath)
         
-        return jsonify({'result': result, 'confidence': float(confidence)}), 200
+        return jsonify({'result': result, 'confidence': float(confidence), 'details': flower_details}), 200
     else:
         return jsonify({'error': 'File type not allowed'}), 400
-
 @app.route('/')
 def index():
     top_flower = top_flowers()
     return render_template('index2.html', top_flowers=top_flower.to_dict(orient='records'))
 
+
+
+@app.route('/details/<int:plant_id>')
+def plant_details(plant_id):
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="Ad.1234@",
+        database="Fleure"
+    )
+    mycursor = mydb.cursor(dictionary=True)
+    query = "SELECT * FROM plant WHERE id = %s"
+    mycursor.execute(query, (plant_id,))
+    plant_details = mycursor.fetchone()
+    mycursor.close()
+    mydb.close()
+    recommendations = flower_recommendations(df, plant_id)
+    return render_template('product_details.html', plant_details=plant_details, recommendations=recommendations.to_dict(orient='records'))
+
 # Démarrer l'application
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')

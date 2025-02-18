@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="/static/assets/css/vendor/animate.min.css">
         <link rel="stylesheet" href="/static/assets/css/vendor/jquery.magnific-popup.css">
         <link rel="stylesheet" href="/static/assets/css/app.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     </head>
     <body>
         <main class="x-hidden">
@@ -341,8 +343,7 @@
                                         </ul>
                                     </figure>
                                     <div class="text-block">
-                                        <a href="product-detail.html" class="h4 mb-16">{{ flower.nom }}</a>
-                                        <p class="mb-24">{{ flower.descriptions }}</p>
+                                        <a href="{{ url_for('plant_details', plant_id=flower.id) }}" class="h4 mb-16">{{ flower.nom }}</a>                                        <p class="mb-24">{{ flower.descriptions }}</p>
                                         <div class="price mb-32">
                                             <del class="h6 dark-gray">${{flower.prix + 10}}.00</del>
                                             <h3>${{flower.prix}}.00</h3>
@@ -1327,6 +1328,8 @@
                 <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
             </svg>
         </a>
+        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#productQuickView" id="modalTrigger" style="display: none;"></a>
+
         <!-- back-to-top-end -->
         <!-- Jquery Js -->
         <script src="/static/assets/js/vendor/jquery-3.6.3.min.js"></script>
@@ -1335,6 +1338,7 @@
         <script src="/static/assets/js/vendor/jquery.magnific-popup.min.js"></script>
         <script src="/static/assets/js/vendor/jquery.nice-select.min.js"></script>
         <script src="/static/assets/js/vendor/wow.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script src="/static/assets/js/vendor/slick.min.js"></script>
         <script src="/static/assets/js/app.js"></script>
         <script>
@@ -1378,12 +1382,51 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                // Affichez les résultats ou mettez à jour l'interface utilisateur ici
+                if (data.result === "Image inconnue") {
+                    toastr.error("L'image ne correspond à aucune fleur.", "Erreur", {
+                        closeButton: true,
+                        progressBar: true,
+                        timeOut: 5000,
+                        positionClass: "toast-top-right",
+                        showMethod: "fadeIn",
+                        hideMethod: "fadeOut"
+                    });
+                } else {
+                    // Mettre à jour et afficher la modale avec les détails de la fleur
+                    const modalTrigger = document.getElementById('modalTrigger');
+                    modalTrigger.setAttribute('data-nom', data.details[0].nom);
+                    modalTrigger.setAttribute('data-description', data.details[0].descriptions_details);
+                    modalTrigger.setAttribute('data-image', `/static/assets/${data.details[0].image}`);
+                    modalTrigger.setAttribute('data-prix', data.details[0].prix);
+                    modalTrigger.click();
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
             });
         }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('productQuickView');
+        const modalTitle = modal.querySelector('.product-detail-content h4');
+        const modalDescription = modal.querySelector('#descriptions_details');
+        const modalImage = modal.querySelector('#img_bag');
+        const modalPrice = modal.querySelector('.product-detail-content .price h3');
+
+        document.querySelectorAll('[data-bs-toggle="modal"]').forEach(button => {
+            button.addEventListener('click', function () {
+                const nom = this.getAttribute('data-nom');
+                const description = this.getAttribute('data-description');
+                const image = this.getAttribute('data-image');
+                const prix = this.getAttribute('data-prix');
+
+                modalTitle.textContent = nom;
+                modalDescription.textContent = description;
+                modalImage.src = image;
+                modalPrice.textContent = `$${prix}.00`;
+            });
+        });
     });
 </script>
         <script>
