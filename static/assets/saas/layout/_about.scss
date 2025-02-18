@@ -1,0 +1,57 @@
+/*----------------------------------------*/
+/*  About CSS START
+/*----------------------------------------*/
+.about{
+    .content{
+        position: relative;
+        z-index: 2;
+        .vector-mockup{
+            position: absolute;
+            z-index: -1;
+            bottom: 0;
+            left: 0;
+            pointer-events: none;
+            width: 44.375vw;
+            @include media-query(991px) {
+                bottom: auto;
+                top: 5%;
+                left: 10%;
+            }
+        }
+        &.st-2{
+            .vector-mockup{
+                left: auto;
+                right: 0;
+                @include media-query(991px) {
+                    right: auto;
+                    bottom: auto;
+                    top: 5%;
+                    left: 10%;
+                }
+            }
+        }
+    }
+    .img-block{
+        position: relative;
+        .img-object{
+            position: absolute;
+            bottom: 0;
+            left: -12%;
+            width: clamp(150px, 15.125vw, 350px) ;
+            @include media-query(575px) {
+                width: 120px;
+            }
+        }
+        .about-tag{
+            position: absolute;
+            right: -6.771vw;
+            top: 1.667vw;
+            padding: clamp(24px, 3.33vw, 96px);
+            background-color: $accent-light;
+            text-align: center;
+            border-radius: 5000px;
+            box-shadow: 4px 0px 0px 0px $accent;
+            transform: rotate(45deg);
+        }
+    }
+}

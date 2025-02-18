@@ -1,0 +1,57 @@
+/*----------------------------------------*/
+/*  Pagination CSS START
+/*----------------------------------------*/
+.pagination {
+    display: flex;
+    align-items: center;
+    margin-top: clamp(24px, 3.33vw, 84px);
+    margin-bottom: 0;
+    gap: clamp(16px, 1.25vw, 32px);
+    justify-content: center;
+    @include media-query(575px) {
+        gap: 12px;
+    }
+    li {
+        a {
+            width: clamp(40px, 3vw, 84px);
+            height: clamp(40px, 3vw, 84px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $white;
+            border: none;
+            background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23985A86FF' stroke-width='2' stroke-dasharray='4%2c 6' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+            border-radius: 5px;
+            color: $accent;
+            transition: $transition;
+            padding: 0;
+            @include media-query(400px) {
+                width: 36px;
+                height: 36px;
+            }
+            svg {
+                transition: $transition;
+                width: clamp(24px, 1.66vw, 48px);
+                height: clamp(24px, 1.66vw, 48px);
+                path {
+                    stroke: $accent;
+                    transition: $transition;
+                }
+            }
+            &.next,
+            &.active,
+            &:hover {
+                transition: $transition;
+                color: $white;
+                background-color: $accent;
+                svg{
+                    path {
+                        stroke: $white;
+                        transition: $transition;
+                    }
+                }
+            }
+        }
+
+    }
+}

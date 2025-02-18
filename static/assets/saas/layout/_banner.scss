@@ -1,0 +1,134 @@
+/*----------------------------------------*/
+/*  Banner CSS START
+/*----------------------------------------*/
+.hero-banner {
+    position: relative;
+    .content {
+        position: relative;
+        &:after{
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: -1;
+            pointer-events: none;
+            background: $accent-light;
+            width: 50%;
+            height: 100%;
+            border-radius: 30px 0 0 30px;
+            @include media-query(1199px) {
+                width: 100%;
+                margin-top: 20px;
+                height: 30%;
+                top: auto;
+                bottom: 0;
+                border-radius: 30px 30px 0 0 ;
+            }
+        }
+        .banner-vector{
+            position: absolute;
+            &.vector-1{
+                top: 1.615vw;
+                right: -1.615vw;
+                width: 11.458vw;
+                @include media-query(1199px) {
+                    width: 100px;
+                    right: 25%;
+                }
+                @include media-query(767px) {
+                    width: 80px;
+                    right: 5%;
+                }
+            }
+            &.vector-2{
+                top: 7.135vw;
+                right: 9.375vw;
+                width: 2.083vw;
+                @include media-query(1199px) {
+                    right: 45%;
+                    width: 30px;
+                }
+                @include media-query(492px) {
+                    width: 22px;
+                }
+            }
+            &.vector-3{
+                left: 1.66vw;
+                bottom: 2.708vw;
+                width: 2.083vw;
+                @include media-query(1199px) {
+                    width: 30px;
+                }
+                @include media-query(767px) {
+                    display: none;
+                }
+            }
+            &.vector-4{
+                left: 9.427vw;
+                bottom: 4.063vw;
+                width: 9.531vw;
+                @include media-query(1199px) {
+                    width: 120px;
+                }
+                @include media-query(767px) {
+                    display: none;
+                }
+            }
+            &.vector-5{
+                top: 2.656vw;
+                right: 7.969vw;
+                width: 10.417vw;
+                transform: rotate(20.608deg);
+                @include media-query(1199px) {
+                    display: none;
+                }
+            }
+        }
+        .text-block{
+            position: relative;
+            padding: 13.021vw 0 15.937vw;
+            @include media-query(1199px) {
+                padding: 150px 0;
+            }
+            @include media-query(767px) {
+                padding: 100px 0 16px;
+            }
+            .title{
+                br{
+                    @include media-query(575px) {
+                        display: none;
+                    }
+                }
+            }
+            p{
+                margin-left: auto;
+                margin-top: -3.438vw;
+                width: 21.563vw;
+                @include media-query(1199px) {
+                    width: 60%;
+                    margin-top: 20px;
+                    margin-left: 0;
+                }
+                @include media-query(575px) {
+                    width: 100%;
+                    margin-top: 16px;
+                }
+            }
+            .btn-block{
+                display: flex;
+                justify-content: start;
+                flex-wrap: wrap;
+                margin-top: 2.1vw;
+                gap: clamp(12px, 0.83vw, 24px);
+                @include media-query(1199px) {
+                    margin-top: 24px;
+                }
+            }
+        }
+        .img-block{
+            position: relative;
+            height: 100%;
+        }
+    }
+}
+

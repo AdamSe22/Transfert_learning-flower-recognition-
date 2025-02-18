@@ -1,0 +1,26 @@
+.categories{
+    .category-card{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: clamp(12px, 0.83vw, 24px);
+        border-radius: 10px;
+        img{
+            width: clamp(120px, 9.375vw, 240px);
+        }
+        .link-btn{
+            color: $accent;
+            text-decoration: underline;
+        }
+        &.bg-gradient-1{
+            background: linear-gradient(110deg, #FFEAF1 -9.36%, #F8E9FF 103.16%);
+        }
+        &.bg-gradient-2{
+            background: linear-gradient(105deg, #FFECE2 -3.62%, rgba(255, 248, 222, 0.91) 113.31%, rgba(255, 232, 149, 0.75) 113.32%), linear-gradient(110deg, #FFEAF1 -9.36%, #F8E9FF 103.16%);
+        }
+        &.bg-gradient-3{
+            background: linear-gradient(104deg, #FEFFE1 0%, #E9F0FF 100%);
+        }
+    }
+}

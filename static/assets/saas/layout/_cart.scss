@@ -1,0 +1,317 @@
+.cart-table{
+    margin: 0 !important;
+	thead{
+		tr{
+            border: none;
+			th{
+                border: none;
+                text-align: center;
+                background-color: $accent-lightest;
+				padding: clamp(16px, 1.25vw, 32px);
+				&:first-child{
+                    text-align: left;
+					padding-left: clamp(16px, 1.25vw, 32px);
+				}
+				&:last-child{
+					padding-right: clamp(16px, 1.25vw, 32px);
+				}
+			}
+		}
+	}
+	tbody{
+		tr{
+            position: relative;
+            padding: 0 clamp(16px, 1.25vw, 32px);
+            &:after{
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: clamp(16px, 1.25vw, 32px);
+                height: 1px;
+                width: 96.5%;
+                opacity: 1;
+                background-image: linear-gradient(90deg, $accent-border, $accent-border 65%, transparent 65%, transparent 100%);
+                background-size: 10px 1px;
+            }
+			&:last-child{
+                &:after{
+                    display: none;
+                }
+			}
+			td{
+				vertical-align: middle;
+                text-align: center;
+                border: none;
+				padding: clamp(16px, 1.25vw, 32px) 0;
+				&.product-block{
+					padding-left: clamp(16px, 1.25vw, 32px);
+                    a{
+                        display: flex;
+                        gap: clamp(16px, 1.25vw, 32px);
+                        align-items: center;
+                    }
+				}
+                .quantity-wrap{
+                    margin: 0 auto;
+                    justify-content: center;
+                }
+                .remove-product {
+                    margin: 0 auto;
+                    display: grid;
+                    border: none;
+                    justify-content: center;
+                    align-content: center;
+                    border-radius: 50%;
+                    width: clamp(40px, 2.5vw, 60px);
+                    height: clamp(40px, 2.5vw, 60px);
+                    background-color: $accent-light;
+                    transition: $transition;
+                    svg {
+                        width: 20px;
+                        height: 20px;
+                        fill: $accent;
+                        transition: $transition;
+                    }
+                    &:hover {
+                        background-color: $accent;
+                        transition: $transition;
+                        svg {
+                            fill: $white;
+                            transition: $transition;
+                        }
+                    }
+                }
+			}
+		}
+	}
+}
+
+.cart-item-card{
+	padding: 16px;
+    position: relative;
+    width: 100%;
+    position: relative;
+	.remove-product {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        display: grid;
+        border: none;
+        justify-content: center;
+        align-content: center;
+        border-radius: 50%;
+        width: clamp(32px, 2vw, 60px);
+        height: clamp(32px, 2vw, 60px);
+        background-color: $accent-light;
+        transition: $transition;
+        svg {
+            width: 16px;
+            height: 16px;
+            fill: $accent;
+            transition: $transition;
+        }
+        &:hover {
+            background-color: $accent;
+            transition: $transition;
+            svg {
+                fill: $white;
+                transition: $transition;
+            }
+        }
+    }
+}
+
+.coupon-code {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(12px, 0.83vw, 24px);
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+  input{
+    width: 100%;
+    background-color: $white;
+    padding: clamp(12px, 0.83vw, 24px);
+    color: $dark-gray;
+    border: none;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23985A86FF' stroke-width='2' stroke-dasharray='4%2c 6' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+    border-radius: 5px;
+    &:focus {
+      color: $dark-gray;
+      outline: none;
+      border: none;
+      box-shadow: none;
+    }
+    &:hover {
+      color: $dark-gray;
+      border: none;
+    }
+    &::placeholder {
+      color: $dark-gray;
+      opacity: 1;
+    }
+  }
+  button {
+    flex-shrink: 0;
+    font-size: clamp(14px, 0.83vw, 20px);
+    font-weight: 500;
+    line-height: 150%;
+    padding: clamp(12px, 0.83vw, 20px) clamp(24px, 1.66vw, 40px);
+    border-radius: 5px;
+    width: fit-content;
+    display: flex;
+    border: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: $transition;
+    background-color: $accent !important;
+    color: $white !important;
+    svg {
+      width: clamp(20px, 1.25vw, 32px);
+      height: clamp(20px, 1.25vw, 32px);
+      path {
+        fill: $white !important;
+      }
+    }
+  }
+}
+
+.cart-btn{
+    height: clamp(36px, 2.5vw, 64px);
+    width: clamp(36px, 2.5vw, 64px);
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: $accent;
+    transition: $transition;
+    img{
+        width: clamp(18px, 1.25vw, 32px);
+        height: clamp(18px, 1.25vw, 32px);
+    }
+
+}
+
+
+// Mini Cart 
+.show-sidebar-cart {
+	#sidebar-cart {
+		right: 0;
+	}
+}
+#sidebar-cart-curtain {
+	background: rgba($accent-dark, 0.2);
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 999;
+}
+
+#sidebar-cart {
+    position: fixed;
+    z-index: 999999;
+    top: 0;
+    width: clamp(350px, 25.167vw, 550px);
+    right: -560px;
+    transition: right 0.5s ease-in-out;
+    .cart-block{
+        height: 100vh;
+        background: $white;
+        position: relative;
+        padding: clamp(16px, 1.25vw, 28px);
+        display: block;
+        @include media-query(575px) {
+            width: 95%;
+            margin-left: auto;
+        }
+    }
+    .upper-block{
+        height: calc(100vh - 200px);
+		overflow-x: hidden;
+		overflow-y: auto;
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: #e4e4e4;
+            border-radius: 6px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            background: $accent;
+            box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
+        }
+        @include media-query(575px) {
+		    height: calc(100vh - 320px);
+        }
+    }
+    .bottom-block{
+        position: absolute;
+        bottom: clamp(16px, 1.25vw, 28px);
+        left: clamp(16px, 1.25vw, 28px);
+        right: clamp(16px, 1.25vw, 28px);
+    }
+	.close-button {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        border-radius: 50% !important;
+        background-color: $accent-lightest;
+        border: none;
+        .close-icon {
+            color: $accent;
+			font-size: 16px;
+			transition: all 0.5s linear;
+		}
+        &:hover{
+            .close-icon {
+                transform: rotate(135deg);
+                transition: all 0.5s linear;
+            }
+        }
+	}
+    .delete-icon {
+        border-radius: 50% !important;
+        background-color: $accent-lightest;
+        width: 32px;
+        height: 32px;
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        transition: all 0.5s linear;
+        svg{
+            width: 16px;
+            height: 16px;
+            fill: $accent;
+        }
+    }
+	.product-list {
+		margin: 0;
+		padding: 0 0 15px 0;
+		list-style: none;
+		display: block;
+		position: relative;
+		z-index: 0;
+       
+		.product-item {
+            .product-block{
+                display: flex;
+                align-items: start;
+                gap: 16px;
+                .img-block{
+                    border-radius: 5px;
+                    background-color: $accent-light;
+                    text-align: center;
+                }
+            }
+		}
+	}
+
+}

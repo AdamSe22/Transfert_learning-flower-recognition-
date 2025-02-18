@@ -1,0 +1,173 @@
+/*-------------------------
+  Form Styling
+-------------------------*/
+
+.form-group {
+  position: relative;
+  width: 100%;
+  input[type="date"],
+  input[type="text"],
+  input[type="email"],
+  input[type="file"],
+  input[type="number"],
+  input[type="password"],
+  input[type="search"],
+  input[type="submit"],
+  input[type="tel"],
+  textarea,
+  .cus-form-control{
+    width: 100%;
+    background-color: $white;
+    padding: 0 clamp(12px, 0.83vw, 24px);
+    height: clamp(42px, 2.917vw, 72px);
+    color: $dark-gray;
+    display: flex;
+    border-radius: 5px;
+    align-items: center;
+    border: none;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23985A86FF' stroke-width='2' stroke-dasharray='4%2c 6' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+    border-radius: 5px;
+    &:focus {
+      color: $dark-gray;
+      outline: none;
+      background-color: $white !important;
+      border: none;
+      border-radius: 5px;
+      box-shadow: none;
+    }
+    &:hover {
+      color: $dark-gray;
+      border: none;
+    }
+    &::placeholder {
+      color: $dark-gray;
+      opacity: 1;
+    }
+  }
+  textarea {
+    height: auto !important;
+    padding-top: 16px;
+  }
+}
+.form-group {
+  input[type="date"]{
+    display: inline-block;
+  }
+}
+.newsletter-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(12px, 0.83vw, 24px);
+  padding: 0;
+  overflow: hidden;
+  input{
+    width: 100%;
+    background-color: $white;
+    padding: clamp(12px, 0.83vw, 24px);
+    color: $dark-gray;
+    border: none;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23985A86FF' stroke-width='2' stroke-dasharray='4%2c 6' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+    border-radius: 5px;
+    &:focus {
+      color: $dark-gray;
+      outline: none;
+      border: none;
+      box-shadow: none;
+    }
+    &:hover {
+      color: $dark-gray;
+      border: none;
+    }
+    &::placeholder {
+      color: $dark-gray;
+      opacity: 1;
+    }
+  }
+  button {
+    flex-shrink: 0;
+    font-size: clamp(14px, 0.83vw, 20px);
+    font-weight: 500;
+    line-height: 150%;
+    padding: clamp(12px, 0.83vw, 20px) clamp(24px, 1.66vw, 40px);
+    border-radius: 5px;
+    width: fit-content;
+    display: flex;
+    border: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: $transition;
+    background-color: $accent !important;
+    color: $white !important;
+    svg {
+      width: clamp(20px, 1.25vw, 32px);
+      height: clamp(20px, 1.25vw, 32px);
+      path {
+        fill: $white !important;
+      }
+    }
+  }
+}
+// Search Field
+.search-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 clamp(12px, 0.83vw, 24px);
+  border-radius: 5px;
+  height: clamp(42px, 2.917vw, 72px);
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23985A86FF' stroke-width='2' stroke-dasharray='4%2c 8' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+  border-radius: 5px;
+  color: $accent-dark;
+  background-color: $white;
+  .form-group {
+    input[type="date"],
+    input[type="text"],
+    input[type="email"],
+    input[type="file"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    input[type="submit"],
+    input[type="tel"],
+    textarea,
+    .cus-form-control {
+      border: none;
+      padding-right: 0;
+      background: transparent;
+      height: auto;
+      color: $accent-dark;
+      padding: 0;
+      &:focus {
+        border: none;
+      }
+      &:hover {
+        border: none;
+      }
+      &::placeholder {
+        color: $accent-dark;
+        border: none;
+      }
+    }
+  }
+  .search-btn {
+    flex-shrink: 0;
+    border: 0;
+    background: transparent;
+    color: $accent-dark;
+    i {
+      font-size: 16px;
+    }
+  }
+}
+
+.cus-form-control-select {
+  padding: 0 24px;
+  border: 1px solid $accent-dark;
+  height: 48px;
+  display: grid;
+  align-content: center;
+  border-radius: 10px;
+  width: clamp(200px, 11.146vw, 240px);
+}

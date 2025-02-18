@@ -1,0 +1,79 @@
+.banner{
+    background: $accent-light;
+    border-radius: clamp(20px, 1.563vw, 40px);
+    padding: clamp(16px, 1.66vw, 42px);
+    .content{
+        border-radius: clamp(20px, 1.563vw, 40px);
+        background: $white;
+        overflow: hidden;
+        position: relative;
+        @include media-query(575px) {
+            padding-top: 32px;
+        }  
+        .bg-shape-vector{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 1;
+            width: 44.375vw;
+        }
+        .text-block{
+            position: relative;
+            text-align: center;
+            padding: 7.461vw 8px;
+            span{
+                display: block;
+                &.title-1{
+                    font-family: $font-sec;
+                    font-size: 8.333vw;
+                    font-weight: 700;
+                    line-height: 73%;
+                    letter-spacing: -3.2px;   
+                    color: $accent-dark;   
+                    @include media-query(991px) {
+                        font-size: 90px;
+                    }
+                    @include media-query(767px) {
+                        font-size: 75px;
+                    }
+                    @include media-query(575px) {
+                        font-size: 64px
+                    }             
+                }
+                &.title-2{
+                    color: $accent;
+                    font-family: $font-pacifico;
+                    font-size: 4.688vw;
+                    font-weight: 400;
+                    line-height: 100%;
+                    letter-spacing: -1.8px;      
+                    margin-top: -2.083vw;   
+                    @include media-query(991px) {
+                        font-size: 50px;
+                    }
+                    @include media-query(767px) {
+                        font-size: 40px;
+                    }
+                    @include media-query(575px) {
+                        font-size: 36px;
+                    }               
+                }
+            }
+        }
+        .img-block{
+            @include media-query(991px) {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+            img{
+                max-height: 36.458vw;
+                @include media-query(991px) {
+                    height: auto;
+                }
+            }
+        }
+    }
+}

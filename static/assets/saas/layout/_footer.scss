@@ -1,0 +1,89 @@
+.footer{
+    .footer-newsletter{
+        margin-bottom: -80px;
+        @include media-query(767px) {
+            margin-bottom: -110px;
+        }
+        .newsletter-box{
+            padding: clamp(24px, 1.66vw, 40px);
+            background-color: $white;
+            background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='%23985A86FF' stroke-width='2' stroke-dasharray='5%2c 8' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+            border-radius: 10px;
+            @include media-query(492px) {
+                padding: 16px 12px;
+            }
+            .newsletter-title{
+                p{
+                    br{
+                        @include media-query(492px) {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .footer-main{
+        padding-top: 140px;
+        background-color: $accent-lightest;
+        .footer-widget{
+            .time{
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                .icon{
+                    width: clamp(28px, 1.66vw, 40px);
+                    height: clamp(28px, 1.66vw, 40px);
+                    border-radius: 50%;
+                    background: $accent-light;
+                    display: grid;
+                    align-content: center;
+                    justify-content: center;
+                    i{
+                        font-size: clamp(12px, 0.83vw, 24px);
+                        color: $accent;
+                    }
+                } 
+            }
+            .links-list{
+                display: flex;
+                flex-direction: column;
+                gap: clamp(12px, 0.83vw, 24px);
+                a{
+                    color: $accent-dark;
+                    &:hover{
+                        color: $accent;
+                    }
+                }
+            }
+            .contacts-list{
+                display: flex;
+                flex-direction: column;
+                gap: clamp(12px, 0.83vw, 24px);
+                a,
+                p{
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    color: $accent-dark;
+                    .icon{
+                        width: clamp(28px, 1.66vw, 40px);
+                        height: clamp(28px, 1.66vw, 40px);
+                        border-radius: 50%;
+                        background: $accent-light;
+                        display: grid;
+                        align-content: center;
+                        justify-content: center;
+                        i{
+                            font-size: clamp(12px, 0.83vw, 24px);
+                            color: $accent;
+                        }
+                    }
+                }
+            }
+        }
+        .footer-bottom{
+            padding: clamp(24px, 1.66vw, 40px) 0;
+        }
+    }
+}

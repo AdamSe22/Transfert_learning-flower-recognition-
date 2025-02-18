@@ -1,0 +1,125 @@
+.testimonial-card{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: clamp(16px, 1.66vw, 48px);
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='30' ry='30' stroke='%23985A86FF' stroke-width='2' stroke-dasharray='10%2c 15' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+    border-radius: 30px;
+    margin-bottom: 2px;
+    @include media-query(767px) {
+        background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='20' ry='20' stroke='%23985A86FF' stroke-width='2' stroke-dasharray='5%2c 7' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+        border-radius: 20px;
+    }
+    @include media-query(470px) {
+        flex-direction: column;
+    }
+    .img-block{
+        position: relative;
+        flex-shrink: 0;
+        img{
+            border-radius: 20px;
+            width: clamp(150px, 12.708vw, 450px);
+            @include media-query(470px) {
+                width: 100%;
+            }
+        }
+        .quote-icon{
+            position: absolute;
+            top: clamp(-10px, -1vw, -24px);
+            right: clamp(-12px, -1.25vw, -32px);
+            width: clamp(48px, 3.33vw, 84px);
+            height: clamp(48px, 3.33vw, 84px);
+            display: grid;
+            justify-content: center;
+            align-content: center;
+            border-radius: 50%;
+            background: $accent-light;
+            svg{
+                width: clamp(24px, 1.563vw, 40px);
+                path{
+                    fill: $accent;
+                }
+            }
+        }
+    }
+    .text-block{
+        position: relative;
+        .stars{
+            display: flex;
+            gap: 4px;
+            i{
+                font-size: 14px;
+                color: $accent;
+            }
+        }
+        .info{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            span{
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                &::before{
+                    content: "-";
+                }
+                &:first-child{
+                    &::before{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+.testimonials-slider-block{
+    position: relative;
+    .arrow {
+        width: clamp(40px, 3vw, 84px);
+        height: clamp(40px, 3vw, 84px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $white;
+        border: none;
+        background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23985A86FF' stroke-width='2' stroke-dasharray='5%2c 5' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+        border-radius: 5px;
+        transition: $transition;
+        padding: 0;
+        position: absolute;
+        top: 50%;
+        z-index: 1;
+        @include media-query(575px) {
+            display: none;
+        }
+        svg {
+            transition: $transition;
+            width: clamp(24px, 1.66vw, 48px);
+            height: clamp(24px, 1.66vw, 48px);
+            path {
+                transition: $transition;
+                stroke: $accent;
+            }
+        }
+    
+        &:hover {
+            background-color: $accent;
+            box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+            svg {
+                path {
+                    transition: $transition;
+                    stroke: $white;
+                }
+            }
+        }
+        &.prev-btn{
+            left: 0;
+            transform: translate(-70%, -50%);
+        }
+        &.next-btn{
+            right: 0;
+            transform: translate(70%, -50%);
+        }
+    }
+}
