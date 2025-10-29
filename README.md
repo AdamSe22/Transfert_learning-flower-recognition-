@@ -47,6 +47,8 @@ Résultats :
 
 🏠 **Page d’accueil**
 ![Home Page](static/assets/home.PNG)
+![Home Page2](static/assets/home2.PNG)
+![Home Page3](static/assets/home3.PNG)
 
 📂 **Chargement d’image**
 L’utilisateur peut uploader une image et obtenir instantanément la fleur correspondante avec des détails et suggestions similaires.
@@ -105,6 +107,14 @@ Suggestions de fleurs similaires via le modèle NLP TF-IDF.
 - Précision du modèle > **90 %** sur le jeu de validation.
 - Expérience utilisateur fluide et responsive.
 - Recommandations pertinentes via NLP.
+
+
+---
+## 👨‍💻 Auteur
+**Adam Serghini**  
+Étudiant ingénieur passionné par la **Data Science** et l’**Intelligence Artificielle**  
+
+📧 [LinkedIn](https://www.linkedin.com/in/adam-serghini-767b47273)
 
 
 ---
