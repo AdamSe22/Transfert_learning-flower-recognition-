@@ -39,7 +39,7 @@ Résultats :
 - Perte de validation stable
 
 📊 **Plot training and validation accuracy (Transfer Learning)**  
-![Transfer Learning Training](static/assets/transfer.PNG)
+![Transfer Learning Training](static/assets/Transfer.PNG)
 
 ---
 
