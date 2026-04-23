@@ -78,7 +78,7 @@ Suggestions de fleurs similaires via le modèle NLP TF-IDF.
 
 1. **Cloner le projet**
    ```bash
-   git clone https://github.com/<ton-username>/bloom.git
+    git clone https://github.com/AdamSe22/bloom.git](https://github.com/AdamSe22/Transfert_learning-flower-recognition-.git
    cd bloom
    ```
 
